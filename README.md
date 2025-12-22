@@ -10,3 +10,6 @@
 
 A pizza ordering application built with React, demonstrating various concepts and techniques taught in the Complete React v9 course.
 
+## Prerequisites
+
+- Node.js > 20.16
