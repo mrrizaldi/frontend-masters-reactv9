@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Pizza from "./Pizza";
+import Cart from "./Cart";
 
 const intl = new Intl.NumberFormat('en-US', {
   style: 'currency',
@@ -11,6 +12,8 @@ export default function Order() {
 
   const [pizzaType, setPizzaType] = useState("pepperoni");
   const [pizzaSize, setPizzaSize] = useState("M");
+
+  const [cart, setCart] = useState([]);
 
   const [loading, setLoading] = useState(true);
 
@@ -36,9 +39,15 @@ export default function Order() {
   }, [])
 
   return (
-    <div className="order">
-      <h2>Create Order
-        <form action="">
+    <div className="order-page">
+      <div className="order">
+        <h2>Create Order</h2>
+        <form onSubmit={
+          (e) => {
+            e.preventDefault();
+            setCart([...cart, { pizza: selectedPizza, size: pizzaSize, price }]);
+          }
+        }>
           <div>
             <div>
               <label htmlFor="pizza-type">Pizza Type</label>
@@ -82,7 +91,9 @@ export default function Order() {
             </div>
           )}
         </form>
-      </h2>
+      </div>
+      {loading ? <h2>LOADING …</h2> : <Cart cart={cart} />}
     </div>
+
   )
 }
