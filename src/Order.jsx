@@ -8,7 +8,7 @@ const intl = new Intl.NumberFormat('en-US', {
 
 export default function Order() {
   const [pizzaTypes, setPizzaTypes] = useState([]);
-  
+
   const [pizzaType, setPizzaType] = useState("pepperoni");
   const [pizzaSize, setPizzaSize] = useState("M");
 
@@ -18,8 +18,10 @@ export default function Order() {
 
   if (!loading) {
     selectedPizza = pizzaTypes.find((pizza) => pizzaType === pizza.id)
+    price = intl.format(selectedPizza.sizes[pizzaSize]);
   }
-  
+
+
   async function fetchPizzaTypes() {
     fetch("/api/pizzas")
       .then((res) => res.json())
@@ -52,25 +54,33 @@ export default function Order() {
               <label htmlFor="pizza-size">Pizza Size</label>
               <div>
                 <span>
-                  <input  onChange={(e) => setPizzaSize(e.target.value)} type="radio" checked={pizzaSize === "S"} name="pizza-size" value="S" id="pizza-s" />
+                  <input onChange={(e) => setPizzaSize(e.target.value)} type="radio" checked={pizzaSize === "S"} name="pizza-size" value="S" id="pizza-s" />
                   <label htmlFor="pizza-s">Small</label>
                 </span>
                 <span>
-                  <input  onChange={(e) => setPizzaSize(e.target.value)} type="radio" checked={pizzaSize === "M"} name="pizza-size" value="M" id="pizza-m" />
+                  <input onChange={(e) => setPizzaSize(e.target.value)} type="radio" checked={pizzaSize === "M"} name="pizza-size" value="M" id="pizza-m" />
                   <label htmlFor="pizza-m">Medium</label>
                 </span>
                 <span>
-                  <input  onChange={(e) => setPizzaSize(e.target.value)} type="radio" checked={pizzaSize === "L"} name="pizza-size" value="L" id="pizza-l" />
+                  <input onChange={(e) => setPizzaSize(e.target.value)} type="radio" checked={pizzaSize === "L"} name="pizza-size" value="L" id="pizza-l" />
                   <label htmlFor="pizza-l">Large</label>
                 </span>
               </div>
             </div>
             <button type="submit">Add to cart</button>
           </div>
-          <div className="order-pizza">
-            <Pizza name="Pepperoni" description="Mozarella cheese, pepperoni" image="/public/pizzas/pepperoni.webp"></Pizza>
-            <p>13.37$</p>
-          </div>
+          {loading ? (
+            <h3>LOADING …</h3>
+          ) : (
+            <div className="order-pizza">
+              <Pizza
+                name={selectedPizza.name}
+                description={selectedPizza.description}
+                image={selectedPizza.image}
+              />
+              <p>{price}</p>
+            </div>
+          )}
         </form>
       </h2>
     </div>
