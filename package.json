@@ -17,11 +17,14 @@
   "license": "ISC",
   "packageManager": "pnpm@10.18.2",
   "dependencies": {
+    "@tanstack/react-query": "^5.90.12",
     "@tanstack/react-router": "^1.144.0",
     "react": "^19.2.3",
     "react-dom": "^19.2.3"
   },
   "devDependencies": {
+    "@tanstack/eslint-plugin-query": "^5.91.2",
+    "@tanstack/react-query-devtools": "^5.91.1",
     "@tanstack/router-devtools": "^1.144.0",
     "@tanstack/router-plugin": "^1.144.0",
     "@vitejs/plugin-react": "^5.1.2",
