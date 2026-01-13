@@ -17,6 +17,7 @@ export default defineConfig({
   },
   test: {
     environment: 'happy-dom',
+    exclude: ['**/*.browser.test.{js,jsx}', '**/node_modules/**'],
   },
   plugins: [tanstackRouter(), react()],
 })

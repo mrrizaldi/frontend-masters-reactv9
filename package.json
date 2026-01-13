@@ -9,7 +9,9 @@
     "format": "prettier --write \"src/**/*.{js,jsx,css}\"",
     "lint": "eslint",
     "preview": "vite preview",
-    "test": "vitest"
+    "test": "vitest",
+    "coverage": "vitest --coverage",
+    "test:ui": "vitest --ui"
   },
   "keywords": [],
   "type": "module",
@@ -29,13 +31,17 @@
     "@tanstack/router-plugin": "^1.144.0",
     "@testing-library/react": "^16.3.1",
     "@vitejs/plugin-react": "^5.1.2",
+    "@vitest/browser": "^4.0.16",
+    "@vitest/ui": "^4.0.16",
     "eslint": "^9.39.2",
     "eslint-config-prettier": "^10.1.8",
     "globals": "^16.5.0",
     "happy-dom": "^20.1.0",
+    "playwright": "^1.57.0",
     "prettier": "^3.7.4",
     "vite": "^7.3.0",
     "vitest": "^4.0.16",
+    "vitest-browser-react": "^2.0.2",
     "vitest-fetch-mock": "^0.4.5"
   }
 }
